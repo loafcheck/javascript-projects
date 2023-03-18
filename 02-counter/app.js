@@ -19,7 +19,7 @@ btns.forEach(function(element) {
         } else if (count < 0) {
             value.style.color = 'red';
         } else {
-            value.style.color = 'blue';
+            value.style.color = 'lemon';
         }
         value.textContent = count;
     })
