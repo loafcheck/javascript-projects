@@ -1,2 +1,1 @@
-# javascript-basic-projects
-Vanilla JS Projects
+# Vanilla JS Projects
