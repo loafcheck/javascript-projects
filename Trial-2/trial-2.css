@@ -1,0 +1,13 @@
+.prompt  {
+    width: 300px;
+    height: 500px;
+    background: black;
+    color: #FFA500;
+}
+
+
+input {
+    display: block;
+    margin: 10px;
+}
+
