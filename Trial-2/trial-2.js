@@ -7,6 +7,7 @@ let number = 10;
 
 function vocabulary () {
   kVocabArr = [];
+  eVocabArr = [];
 
   for ( let i = 0 ; i < number ; i ++) {
     kVocabArr.push(koreanWordList[i].value);
