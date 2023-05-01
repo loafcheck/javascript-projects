@@ -3,7 +3,8 @@ const englishWordList = document.getElementsByClassName('englishWordList');
 const btn1 = document.getElementById('button1');
 let kVocabArr =[];
 let eVocabArr =[];
-let number = 10;
+let items = [];
+let number = 3;
 
 function vocabulary () {
   kVocabArr = [];
@@ -13,14 +14,9 @@ function vocabulary () {
     kVocabArr.push(koreanWordList[i].value);
     eVocabArr.push(englishWordList[i].value);
   }
-  console.log("kVocabArr is :"+kVocabArr.length);
-  console.log("eVocabArr is :"+eVocabArr.length);
-
-
-  if (NoneEmpty(kVocabArr)&&NoneEmpty(kVocabArr) == true){
-    console.log('kVocabArr is: '+ kVocabArr);
-    console.log('eVocabArr is: '+ eVocabArr);
-    return (kVocabArr)
+  if (NoneEmpty(kVocabArr) && NoneEmpty(eVocabArr) == true){
+    createItemsArray(kVocabArr, eVocabArr);
+    return 1;
   } 
 
 }
@@ -34,6 +30,19 @@ function NoneEmpty(array) {
   }
   return true;
 }
+
+function createItemsArray(kVocabArr, eVocabArr) {
+  for (let i = 0; i < kVocabArr.length; i++) {
+    items.push({
+      Vocab: i + 1,
+      English: eVocabArr[i],
+      Korean: kVocabArr[i]
+    });
+  }
+  console.log (items);
+  return items;
+}
+
 
 
 btn1.addEventListener('click', vocabulary);

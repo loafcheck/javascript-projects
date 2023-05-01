@@ -12,23 +12,6 @@ let firstCard = false;
 let secondCard = false;
 
 
-//prompt
-
-// const items = [];
-
-// let vocabObj = {
-//     Vocab:1,
-//     Korean:korean[0],
-//     English:english[0]
-// }
-
-// for (let i = 0 ; i <number ; i++) {
-//     for (let j = 0 ; j < 1 ; j++) {
-//         items[items.length] ={Vocab:i+1 , Korean:korean[i] ,English: english[i]}
-//         }
-//     }
-
-
 //Items array
 const items = [
     {Vocab: 1, English:"bee", Korean:"벌"},
@@ -36,13 +19,13 @@ const items = [
     {Vocab: 3, English:"tiger", Korean:"호랑이"},
     {Vocab: 4, English:"gorilla", Korean:"고릴라"},
     {Vocab: 5, English:"lion", Korean:"사자"},
-    {Vocab: 6, English:"monkey", Korean:"원숭이"},
+    {Vocab: 6, English:"monkey", Korean:"원숭이"},  
     {Vocab: 7, English:"sheep", Korean:"양"},
     {Vocab: 8, English:"mouse", Korean:"쥐"},
     {Vocab: 9, English:"chicken", Korean:"닭"},
     {Vocab: 10, English:"Pig", Korean:"돼지"},
     {Vocab: 11, English:"cow", Korean:"소"},
-    {Vocab: 12, English:"camel", Korean:"낙타"},
+    {Vocab: 12, English:"camel", Korean:"낙타"}
 ]
 
 //Initial Time
@@ -204,11 +187,26 @@ const matrixGenerator = (cardValues, size = 4) => {
     });
 }
 
+
+// const moves = document.getElementById("moves-count");
+// const Questions = document.getElementById("prompt-questions");
+// const timeValue = document.getElementById("time");
+// const startButton = document.getElementById("start");
+// const stopButton = document.getElementById("stop");
+// const gameContainer = document.querySelector(".game-container");
+// const result = document.getElementById("result");
+// const controls = document.querySelector(".controls-container");
+// let cards;
+// let interval;
+// let firstCard = false;
+// let secondCard = false;
+
+
+
+
+//16개의 카드에 shuffle된 카드 데이터를 넣기.
 //Start game
 startButton.addEventListener("click", () => {
-    // Questions.classList.add("controls-container");
-   
-
     movesCount = 0;
     seconds = 0;
     minutes = 0;
@@ -222,6 +220,26 @@ startButton.addEventListener("click", () => {
     moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
     initializer();
   });
+
+
+//Start game 원본
+// startButton.addEventListener("click", () => {
+//     // Questions.classList.add("controls-container");
+   
+
+//     movesCount = 0;
+//     seconds = 0;
+//     minutes = 0;
+//     //controls amd buttons visibility
+//     controls.classList.add("hide");
+//     stopButton.classList.remove("hide");
+//     startButton.classList.add("hide");
+//     //Start timer
+//     interval = setInterval(timeGenerator, 1000);
+//     //initial moves
+//     moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+//     initializer();
+//   });
   
 
 stopButton.addEventListener (
