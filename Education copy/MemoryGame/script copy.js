@@ -79,7 +79,7 @@ for (let i = 1; i <= number; i++) {
   
     for ( let i = 0 ; i < number ; i ++) {
       kVocabArr.push(koreanWords[i].value);
-      eVocabArr.push(englishWords[i].value); 
+      eVocabArr.push(englishWords[i].value);
     }
     if (NoneEmpty(kVocabArr,eVocabArr) == true){
       createItemsArray(kVocabArr, eVocabArr);
@@ -150,46 +150,210 @@ const generateRandom = (size = 4) => {
   let tempArray = [...items];
   //initializes cardValues array
   let cardValues = [];
-  //size should be double (4*4 matrix)/2 since pairs of objects would exist
-  size = (size * size) / 2;
-  //Random object selection
-  for (let i = 0; i < size; i++) {
-    const randomIndex = Math.floor(Math.random() * tempArray.length);
-    cardValues.push(tempArray[randomIndex]);
-    //once selected remove the object from temp array
-    tempArray.splice(randomIndex, 1);
+  //size should be double (4*4 matrix)/2 since paris of objecs would exist
+  size = (size*size) /2;
+  //4*4/2 = 8 size=8
+  let prevRandomIndex = 0;
+  //
+  while (true) {
+      const randomIndex = Math.floor(Math.random()*tempArray.length);
+      
+      if (randomIndex != prevRandomIndex) {
+          cardValues.push(tempArray[randomIndex]);
+          tempArray.splice(randomIndex,1);
+          } 
+      if (cardValues.length == size) {
+          break;
+      }
   }
+  
   return cardValues;
+
 };
 
 
+// const matrixGenerator = (cardValues, size = 4) => {
+//   gameContainer.innerHTML = "";
+//   let cardValuesSet1 = [...cardValues];
+//   let cardValuesSet2 = [...cardValues];
+//   //shuffle
+//   let stack = [];
+//   let gridsize = size*size;
+
+//   while (stack.length < gridsize) {
+//     const randomIndex = Math.floor(Math.random() * gridsize);
+//     if (!stack.includes(randomIndex)) {
+//       stack.push(randomIndex);
+//     }
+//   } 
+//   const firstHalf = stack.slice(0, 8);
+//   const secondHalf = stack.slice(8, 16);
+
+//     for (let i = 0; i < size*2; i++) {
+//   gameContainer.innerHTML += `
+//    <div class="card-container" data-card-value="${cardValuesSet1[firstHalf[i]].Vocab}">
+//       <div class="card-before">?</div>
+//       <div class="card-after"><span>${cardValuesSet1[firstHalf[i]].Korean}</span></div>
+//    </div>
+//    `;
+//    //16개의 카드에 shuffle된 카드 데이터를 넣기.
+// }
+//   for (let i = 0; i < size*2; i++) {
+//       gameContainer.innerHTML += `
+//      <div class="card-container" data-card-value="${cardValuesSet2[secondHalf[i]].Vocab}">
+//         <div class="card-before">?</div>
+//         <div class="card-after"><span>${cardValuesSet2[secondHalf[i]].English}</span></div> 
+//      </div>
+//      `;
+//      //16개의 카드에 shuffle된 카드 데이터를 넣기.
+//   }  
+// }
+
+
+// const matrixGenerator = (cardValues, size = 4) => {
+//   gameContainer.innerHTML = "";
+//   let cardValuesSet1 = [...cardValues];
+//   let cardValuesSet2 = [...cardValues];
+//   //shuffle
+//   cardValuesSet1.sort(()=> Math.random()-0.5);
+  
+//   for (let i = 0; i < size *2; i++) {
+//   gameContainer.innerHTML += `
+//    <div class="card-container" data-card-value="${cardValuesSet1[i].Vocab}">
+//       <div class="card-before">?</div>
+//       <div class="card-after"><span>${cardValuesSet1[i].Korean}</span></div>
+//    </div>
+//    `;
+//    //16개의 카드에 shuffle된 카드 데이터를 넣기.
+// }
+//   for (let i = 0; i < size *2; i++) {
+//       gameContainer.innerHTML += `
+//      <div class="card-container" data-card-value="${cardValuesSet2[i].Vocab}">
+//         <div class="card-before">?</div>
+//         <div class="card-after"><span>${cardValuesSet2[i].English}</span></div> 
+//      </div>
+//      `;
+//      //16개의 카드에 shuffle된 카드 데이터를 넣기.
+//   }
+
+
+//   //Grid
+//   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
+
+//   //cards
+//   cards = document.querySelectorAll('.card-container');
+//   cards.forEach((card)=>{
+//       card.addEventListener('click', ()=>{
+//           //If selected card is not matched yet then only run
+//           if (!card.classList.contains("matched")) {
+//               //contain method true or false
+//               //flip the clicked card
+//               card.classList.add("flipped");
+//               //if it is the firstcard
+//               if(!firstCard){
+//                   //let firstCard = false;
+//                   //let secondCard = false;
+//                   //so current card will become firstCard
+//                   firstCard = card;
+//                   firstCardValue = card.getAttribute("data-card-value");
+//               } else {
+//                   movesCounter();
+//                   secondCard = card;
+//                   let secondCardValue = card.getAttribute("data-card-value");
+//                   if (firstCardValue == secondCardValue) {
+//                       firstCard.classList.add("matched");
+//                       secondCard.classList.add("matched");
+//                       //set firstCard to false since next card would be first now
+//                       firstCard = false;
+//                       winCount += 1;
+
+//                       if (winCount == Math.floor(cardValues.length)) {
+//                           //8
+//                           result.innerHTML = `<h2>You Won</h2>
+//                           <h4> Moves : ${movesCount}</h4>`;
+//                           stopGame();
+//                       }
+//                   } else {
+//                       //if the cards dont match
+//                       //flip the cards back to normal
+//                       let [tempFirst, tempSecond] = [firstCard, secondCard];
+//                       firstCard = false;
+//                       secondCard = false;
+//                       let delay = setTimeout(()=>{
+//                           tempFirst.classList.remove("flipped");
+//                           tempSecond.classList.remove("flipped");
+//                       },900);
+//                   }
+//               }
+//           }
+//       });
+//   });
+// }
+
+
+const stack = [];
+let randomNumber;
+
+function randomPosition (size) {
+  while (stack.length < size * 2) { // generate 8 unique random numbers
+  randomNumber = Math.floor(Math.random() * size * 2)+1; // generate a random number between 1 and 8
+
+  if (!stack.includes(randomNumber)) { // check if the number is unique
+    stack.push(randomNumber); // add the number to the usedNumbers array
+    }
+  }
+return (stack); // Output: an array of 8 unique random integers between 1 and 8
+}
+//[6, 5, 3, 1, 4, 2, 7, 8]
+
 const matrixGenerator = (cardValues, size = 4) => {
   gameContainer.innerHTML = "";
-  cardValues = [...cardValues, ...cardValues];
+  let cardValuesSet1 = [...cardValues];
+
+
   //shuffle
-  cardValues.sort(()=> Math.random()-0.5);
-
-  //16개의 카드에 shuffle된 카드 데이터를 넣기. 
-  for (let i = 0; i < size * size; i++) {
-    let cardIndex = i % size; 
-    let cardValue = (i % 2 === 0) ? cardValues[i].Korean : cardValues[i].English;
-
+  cardValuesSet1.sort(()=> Math.random()-0.5);
+  
+  for (let i = 0; i < size *2; i++) {
     gameContainer.innerHTML += `
-      <div class="card-container" data-card-value="${cardValues[i].Vocab}">
-        <div class="card-before">?</div>
-        <div class="card-after"><span>${cardValue}</span></div>
-      </div>
-    `;
-   
-   
+   <div class="card-container" data-card-value="${cardValuesSet1[i].Vocab}">
+      <div class="card-before">?</div>
+      <div class="card-after"><span>${cardValuesSet1[i].Korean}</span></div>
+   </div>
+   `;
+   //16개의 카드에 shuffle된 카드 데이터를 넣기.
 }
+  for (let i = 0; i < size *2; i++) {
+      gameContainer.innerHTML += `
+     <div class="card-container" data-card-value="${cardValuesSet1[i].Vocab}">
+        <div class="card-before">?</div>
+        <div class="card-after"><span>${cardValuesSet1[i].English}</span></div> 
+     </div>
+     `;
+     //16개의 카드에 shuffle된 카드 데이터를 넣기.
+  }
 
+  //cards
+  cards = document.querySelectorAll('.card-container');
+  // Shuffle the cards using the Fisher-Yates shuffle algorithm
+
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  // Append the shuffled cards to gameContainer
+  gameContainer.innerHTML = '';
+  for (const card of cards) {
+    gameContainer.appendChild(card);
+  }
+//// Log the shuffled order of the cards
+console.log("Shuffled order:");
+cards.forEach((card) => console.log(card.getAttribute("data-card-value")));
   //Grid
   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 
-
-  //cards
-  cards = document.querySelectorAll('.card-container'); 
+ 
 
   cards.forEach((card)=>{
       card.addEventListener('click', ()=>{
